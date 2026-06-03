@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block nav_movies %}active{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Movies / Shows</h1>
+  <p class="subtitle">View, search and manage all the movies and shows.</p>
+</div>
+
+<!-- Filters -->
+<div class="card filters-card">
+  <div class="filters-row">
+    <div class="filter-group">
+      <label>Year of Release</label>
+      <select id="filter-year">
+        <option value="all">All Years</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Language</label>
+      <select id="filter-language">
+        <option value="all">All Languages</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Sort By</label>
+      <select id="sort-by">
+        <option value="release_date">Release Date</option>
+        <option value="rating">Rating</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Order</label>
+      <select id="sort-order">
+        <option value="desc">Descending</option>
+        <option value="asc">Ascending</option>
+      </select>
+    </div>
+    <div class="filter-actions">
+      <button class="btn-primary" onclick="applyFilters()">Apply Filters</button>
+      <button class="btn-ghost" onclick="resetFilters()">Reset</button>
+    </div>
+  </div>
+</div>
+
+<!-- Table -->
+<div class="card table-card">
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th class="sortable" data-field="release_date" onclick="toggleSort('release_date')">
+            Release Date <span id="sort-icon-release_date">↕</span>
+          </th>
+          <th>Year</th>
+          <th>Language</th>
+          <th class="sortable" data-field="rating" onclick="toggleSort('rating')">
+            Rating <span id="sort-icon-rating">↕</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="movies-tbody">
+        <tr><td colspan="6" class="loading-cell">Loading...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination-row">
+    <p id="pagination-info" class="pagination-info"></p>
+    <div class="pagination-controls" id="pagination-controls"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/movies.js"></script>
+{% endblock %}

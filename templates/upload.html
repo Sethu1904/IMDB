@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block nav_upload %}active{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Upload CSV File</h1>
+  <p class="subtitle">Upload a CSV file to add or update movies/shows data.</p>
+</div>
+
+<!-- Upload Form -->
+<div id="upload-section">
+  <div class="card drop-zone-card" id="drop-zone">
+    <svg class="upload-icon" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#4A90D9" stroke-width="1.5">
+      <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/>
+      <path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/>
+    </svg>
+    <p class="drop-text">Drag and drop your CSV file here</p>
+    <p class="drop-or">or</p>
+    <label class="btn-primary" for="file-input">Choose File</label>
+    <input type="file" id="file-input" accept=".csv" hidden />
+    <p class="file-hint">CSV file size can be up to 1GB</p>
+    <p id="selected-file-name" class="selected-file"></p>
+  </div>
+
+  <div class="card info-card">
+    <div class="info-header">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A90D9" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <strong>CSV Guidelines</strong>
+    </div>
+    <p>Please upload a CSV file with the required columns.</p>
+    <p>Ensure that the data is in the correct format.</p>
+    <p class="required-cols">Required columns: <code>title, release_date, original_language, languages, vote_average, vote_count</code></p>
+  </div>
+
+  <div id="upload-progress" class="hidden">
+    <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+    <p class="progress-text" id="progress-text">Uploading...</p>
+  </div>
+</div>
+
+<!-- Success Screen -->
+<div id="success-section" class="hidden">
+  <div class="card success-card">
+    <div class="success-icon">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>File Uploaded Successfully!</h2>
+    <p id="success-filename" class="success-filename"></p>
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <p class="stat-label">Total Records Processed</p>
+        <p class="stat-value green" id="stat-records">—</p>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-box">
+        <p class="stat-label">Time Taken</p>
+        <p class="stat-value green" id="stat-time">—</p>
+      </div>
+    </div>
+
+    <a href="/movies" class="btn-primary full-btn">View Movies / Shows</a>
+    <button class="btn-link" onclick="resetUpload()">Upload Another File</button>
+  </div>
+</div>
+
+<!-- Error -->
+<div id="error-section" class="hidden">
+  <div class="card error-card">
+    <p id="error-msg" class="error-text"></p>
+    <button class="btn-link" onclick="resetUpload()">Try Again</button>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/upload.js"></script>
+{% endblock %}

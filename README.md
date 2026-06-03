@@ -66,7 +66,7 @@ You should see `{ ok: 1 }`.
 
 ```bash
 git clone <your-github-repo-url>
-cd imdb-app
+cd IMDB
 ```
 
 ## Step 7 — Setup Python Environment
@@ -94,7 +94,7 @@ http://localhost:5001
 
 ```bash
 brew services start mongodb-community@6.0
-cd imdb-app
+cd IMDB
 source venv/bin/activate
 python3 run.py
 ```
@@ -141,7 +141,7 @@ You should see `{ ok: 1 }`.
 
 ```cmd
 git clone <your-github-repo-url>
-cd imdb-app
+cd IMDB
 ```
 
 ## Step 6 — Setup Python Environment
@@ -169,7 +169,7 @@ http://localhost:5001
 MongoDB runs as a Windows service automatically, so just:
 
 ```cmd
-cd imdb-app
+cd IMDB
 venv\Scripts\activate
 python run.py
 ```
